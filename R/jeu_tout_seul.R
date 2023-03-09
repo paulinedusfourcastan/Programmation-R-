@@ -1,5 +1,5 @@
 library(emoji)
-library(ggplot2)
+library(emojifont)
 
 source("grille_crea.R")
 source("case_revelation.R")
