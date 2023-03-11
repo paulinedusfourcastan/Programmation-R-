@@ -16,9 +16,11 @@ jeu_seul <- function (nv, nb_part){
   if(nv==2){nb_bomb<-70}
   if(nv==3){nb_bomb<-100}
   
-  gg_d <- creation_grille(nv)
+  gg_d <- creation_grille(nb_bomb)
   
   A <- crea_vide(nv)
+  
+  
   
   for (i in 1:nb_part){
     n <- sample(1:225, size = 1)
