@@ -20,7 +20,7 @@ Les règles du jeu sont les suivantes :
 
 -   le fichier R `grille_crea.R` contient deux fonctions : `crea_vide()` qui crée une matrice de taille 15x15 remplie de tournesols et `creation_grille()` qui crée une matrice de démineur de taille 15x15 remplie de mines .
 
--   le fichier R `app.R` contient les deux fonctions server et ui pour l'application shiny.
+-   le fichier R `app.R` contient les deux fonctions server et ui pour lancer l'application shiny.
 
 ## Exemples
 
