@@ -66,7 +66,7 @@ server <- function(input, output, session) {
   grille_vide <- eventReactive(input$jeu_encore, {crea_vide(nb_bomb())})
   grille_remplie <- eventReactive(input$jeu_encore, {creation_grille(nb_bomb())})
   
-  
+  # pour afficher la première grille 
   output$grille_debut <- renderTable({grille_vide()}, colnames = FALSE)
 
 }
