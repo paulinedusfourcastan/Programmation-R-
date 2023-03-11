@@ -1,6 +1,7 @@
 library(shiny)
 library(shinyjs)
 library(shinythemes)
+library(emojifont)
 
 ui <- fluidPage(
   theme = shinytheme("slate"),
