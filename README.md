@@ -25,6 +25,6 @@ Les règles du jeu sont les suivantes :
 ## Exemples
 
 <p align="center">
-  <img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img1.png" width=400 title="dem">
+  <img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img1.png" width=600 title="dem">
 </p>
 
