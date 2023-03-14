@@ -8,9 +8,11 @@ Le but est de créer une bibliothèque R permettant de jouer au démineur.
 
 Les règles du jeu sont les suivantes :
 
--   vous commencez par choisir le niveau de difficulté du jeu qui permettra de déterminer le nombre de bombes à placer dans la grille de démineur
+-   vous commencez par choisir le niveau de difficulté du jeu, c'est à dire la taille de grille que vous souhaitez ainsi que le nombre de bombes à placer.
 
 -   vous choisissez une case à révéler. Si celle-ci contient une bombe, la partie se termine et vous avez perdu. Si la case choisie ne contient pas de bombe, dans ce cas là un numéro apparaitra sur cette dernière, il correspondra alors au nombre de bombes adjacentes à cette case.
+
+-   vous pouvez également placer un drapeau puis le retirer à tout moment.
 
 ## Les fonctions
 
@@ -50,8 +52,8 @@ Si vous ouvrez une case contenant une bombe, le jeu s'arrête et la grille de je
 
 </p>
 
-## Contact 
+## Contact
 
-Pauline Dusfour-Castan : pauline.dusfourcastan@gmail.com
+Pauline Dusfour-Castan : [pauline.dusfourcastan\@gmail.com](mailto:pauline.dusfourcastan@gmail.com){.email}
 
-Sofiane Aoues : aoues.sofiane@outlook.com
+Sofiane Aoues : [aoues.sofiane\@outlook.com](mailto:aoues.sofiane@outlook.com){.email}
