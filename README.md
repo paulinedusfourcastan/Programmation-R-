@@ -34,6 +34,22 @@ Voilà comment se présente de base l'interface de jeu après que vous ayez choi
 
 </p>
 
+Lorsque vous ouvrez des cases, voilà ce que vous obtenez :
+
+<p align="center">
+
+<img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img3.png" title="dem" width="600"/>
+
+</p>
+
+Si vous ouvrez une case contenant une bombe, le jeu s'arrête et la grille de jeu finie apparaît :
+
+<p align="center">
+
+<img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img4.png" title="dem" width="600"/>
+
+</p>
+
 ## Contact 
 
 Pauline Dusfour-Castan : pauline.dusfourcastan@gmail.com
