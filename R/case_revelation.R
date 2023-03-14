@@ -2,9 +2,78 @@ library(emoji)
 library(emojifont)
 library(dplyr)
 
+# Fonction qui révèle la valeur d'une case
+# case_id = numéro de la case que l'on veut ouvrir
+# grille1 = grille vide créée avec crea_vide()
+# grille2 = grille de démineur créée avec creation_grille()
+
 case_revel <- function(case_id, grille1, grille2){
-  grille1[case_id] <- grille2[case_id]
-  return(grille1)
+  t <- nrow(grille1)
+  
+  # dans le cas des bombes 
+  if (grille2[case_id]== -6){
+    grille1[case_id] <- emoji("bomb")
+    for (i in (1:t^2)){
+      if (grille2[i]== -6){
+        grille2[i] <- emoji("bomb")
+      }
+    }
+
+    return(grille2)
+  }
+  
+  # dans le cas voisin = bombe
+  if (grille2[case_id]!= -6  & grille2[case_id]!=0){
+    grille1[case_id] <- grille2[case_id]
+    return(grille1)
+  }
+  
+  # dans le cas pas de voisin bombe
+  if (grille2[case_id]==0){
+    # coin haut gauche
+    if (case_id==1){
+      grille1[case_id] <- grille2[case_id]
+      grille1[case_id + 1] <- grille2[case_id +1]
+      grille1[case_id + t] <- grille2[case_id +t]
+      grille1[case_id + t+1] <- grille2[case_id +t+1]
+      return(grille1)
+    }
+    # coin bas gauche
+    if(case_id == t){
+      grille1[case_id] <- grille2[case_id]
+      grille1[case_id - 1] <- grille2[case_id -1]
+      grille1[case_id + t] <- grille2[case_id +t]
+      grille1[case_id + t -1] <- grille2[case_id +t-1]
+      return(grille1)
+    }
+    # coin bas droit
+    if (case_id == t^2){
+      grille1[case_id] <- grille2[case_id]
+      grille1[case_id - 1] <- grille2[case_id -1]
+      grille1[case_id - t] <- grille2[case_id -t]
+      grille1[case_id - t -1] <- grille2[case_id -t-1]
+      return(grille1)
+    }
+    # coin haut droit
+    if (case_id == t^2 -t+1){
+      grille1[case_id] <- grille2[case_id]
+      grille1[case_id + 1] <- grille2[case_id +1]
+      grille1[case_id - t +1] <- grille2[case_id -t+1]
+      grille1[case_id - t] <- grille2[case_id -t]
+      return(grille1)
+    }
+    
+    
+    
+    
+    else{
+      grille1[case_id] <- grille2[case_id]
+      return(grille1)  
+    }
+    
+
+  }
+  
   
 }
 
