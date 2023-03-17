@@ -3,7 +3,9 @@ library(emojifont)
 
 # Fonction pour placer un drapeau 
 place_drap <- function(drapeau, grille){
-  grille[drapeau] <- emoji("triangular_flag_on_post")
+  t <- nrow(grille)
+  drap <- matrix(data =paste0(emoji("triangular_flag_on_post"),1:(t^2)), nrow = t, ncol = t)
+  grille[drapeau] <- drap[drapeau]
   return(grille)
   
 }
@@ -11,6 +13,8 @@ place_drap <- function(drapeau, grille){
 
 # Fonction pour enlever un drapeau 
 deplace_drap <- function(drapeau, grille){
-  grille[drapeau] <- paste0(emoji("sunflower"),drapeau)
+  t <- nrow(grille)
+  gg <- matrix(data =paste0(emoji("sunflower"),1:(t^2)), nrow = t, ncol = t)
+  grille[drapeau] <- gg[drapeau]
   return(grille)
 }
