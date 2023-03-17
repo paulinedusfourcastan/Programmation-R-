@@ -63,12 +63,61 @@ case_revel <- function(case_id, grille1, grille2){
       return(grille1)
     }
     
+    # bord gauche
+    if (1 < case_id & case_id < t){
+      grille1[case_id] <- grille2[case_id]
+      grille1[case_id+1] <- grille2[case_id+1]
+      grille1[case_id-1] <- grille2[case_id-1]
+      grille1[case_id+t] <- grille2[case_id+t]
+      grille1[case_id+t-1] <- grille2[case_id+t-1]
+      grille1[case_id+t+1] <- grille2[case_id+t+1]
+      return(grille1)
+    }
     
+    # bord droit
+    if(t^2 -t+1 < case_id & case_id < t^2){
+      grille1[case_id] <- grille2[case_id]
+      grille1[case_id+1] <- grille2[case_id+1]
+      grille1[case_id-1] <- grille2[case_id-1]
+      grille1[case_id-t] <- grille2[case_id-t]
+      grille1[case_id-t-1] <- grille2[case_id-t-1]
+      grille1[case_id-t+1] <- grille2[case_id-t+1]
+      return(grille1)
+    }
     
+    # bord bas
+    if(case_id %% t == 0 & case_id != t & case_id!= t^2){
+      grille1[case_id] <- grille2[case_id]
+      grille1[case_id -t] <- grille2[case_id -t]
+      grille1[case_id +t] <- grille2[case_id +t]
+      grille1[case_id -t-1] <- grille2[case_id -t-1]
+      grille1[case_id -1] <- grille2[case_id -1]
+      grille1[case_id +t-1] <- grille2[case_id +t-1]
+      return(grille1)
+    } 
+    
+    # bord haut
+    if (case_id%%t==1 & case_id!=1 & case_id!=t^2 -t+1){
+      grille1[case_id] <- grille2[case_id]
+      grille1[case_id -t] <- grille2[case_id -t]
+      grille1[case_id +t] <- grille2[case_id +t]
+      grille1[case_id -t+1] <- grille2[case_id -t+1]
+      grille1[case_id +1] <- grille2[case_id +1]
+      grille1[case_id +t+1] <- grille2[case_id +t+1]
+      return(grille1)
+    }
     
     
     else{
       grille1[case_id] <- grille2[case_id]
+      grille1[case_id + 1] <- grille2[case_id +1]
+      grille1[case_id - 1] <- grille2[case_id -1]
+      grille1[case_id + t] <- grille2[case_id +t]
+      grille1[case_id - t] <- grille2[case_id -t]
+      grille1[case_id - t -1] <- grille2[case_id -t-1]
+      grille1[case_id - t +1] <- grille2[case_id -t+1]
+      grille1[case_id + t +1] <- grille2[case_id +t+1]
+      grille1[case_id + t -1] <- grille2[case_id +t-1]
       return(grille1)  
     }
     
