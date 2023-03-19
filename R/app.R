@@ -40,13 +40,10 @@ ui <- fluidPage(
       
       actionButton("clic","Réveler"),
       
-      numericInput('drapeau_id', "Choix de la case où poser le drapeau :", 1, min = 1, max = 225),
+      numericInput('drapeau_id', "Choix de la case où poser/enlever le drapeau :", 1, min = 1, max = 225),
       
-      actionButton("drap", "Poser"),
-      
-      numericInput('drap_id', "Choix de la case où enlever le drapeau :", 1, min = 1, max = 225),
-      
-      actionButton("drapenl", "Enlever")
+      actionButton("drap", "Poser/Enlever"),
+
       
     ),
     
@@ -55,8 +52,7 @@ ui <- fluidPage(
       
       textOutput("global_counter", inline = TRUE),
       textOutput("NBomB"), 
-
-      tableOutput("grille_1"),
+      
       tableOutput("grille_2"),
     )
   )
@@ -106,8 +102,7 @@ server <- function(input, output, session) {
   observeEvent(input$clic, {
     values$c[values$nb_part] <- {input$case_id}
     values$nb_part <- values$nb_part + 1
-    hide("grille_1")
-    show("grille_2")
+    
   })
   
   # observeEvent
@@ -115,28 +110,26 @@ server <- function(input, output, session) {
     values2$c2[values2$nb_drap] <- {input$drapeau_id}
     values2$nb_drap <- values2$nb_drap + 1
   })
-
+  
   
   # Output 2 
   # le jeu commence
   output$grille_2 <- renderTable({
     G <- grille_debut()
+    for (j in values2$c2){
+      G <- place_drap(j, G)
+    }
     
     for (i in values$c) {
       G <- case_revel(i, G, grille_jeu()) 
     }
     return(G)
     
-    for (j in values$c1){
-      G <- place_drap(j, G)
-    }
-    return(G)
+    
   },colnames = FALSE)
   
   # observeEvent 
   observeEvent(input$go, {
-    hide("grille_2")
-    show("grille_1")
     values$nb_part <- 0
     values$c <- c()
     values2$nb_drap <- 0
