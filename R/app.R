@@ -1,19 +1,19 @@
 library(shiny)
 library(shinyjs)
 library(shinythemes)
+library(emoji)
 library(emojifont)
 
 ui <- fluidPage(
   theme = shinytheme("slate"),
   # header
   titlePanel('Jeu Du Démineur'),
-  helpText("Niveau 1 : grille 15x15 et 50 bombes"),
-  helpText("Niveau 2 : grille 15x15 et 70 bombes"),
-  helpText("Niveau 3 : grille 15x15 et 100 bombes"),
+  helpText("Conseils :"),
+  helpText("Ne commencez pas avec un nombre de bombes élevé."),
+  helpText("Par exemple, entrainez-vous d'abord avec les paramètres définis."),
   
   modalDialog(
-    "Pour pouvoir commencer à jouer, il vous suffit de choisir le niveau
-            de difficulté du démineur.",
+    "Pour pouvoir commencer à jouer, il vous suffit de choisir la taille du démineur ainsi que le nombre de bombes souhaité.",
     br(),
     "Le but du jeu est de creuser toutes les cases ne possédant pas de bombes",
     br(),
@@ -26,49 +26,117 @@ ui <- fluidPage(
   ),
   
   
-  # sidebar
+  
   sidebarLayout(
     
     sidebarPanel(
+      sliderInput('taille', "Taille de la grille NxN :", 10, min = 10, max = 15),
       
-      radioButtons("bomb", label = h3("Choix du Niveau"),
-                   choices = list("Niveau 1" = 50, "Niveau 2" = 70, "Niveau 3" = 100), 
-                   selected = 1),
+      numericInput("nb_bomb", "Nombre de mines :", 20, min = 20, max = 70),
       
-      actionButton("jeu_encore", "New Game"),
+      actionButton("go", "Nouvelle partie"),
       
-      selectInput("case_id", label=("Choix de la case à ouvrir"), choices =c(1:225)
-      ),
+      numericInput('case_id', "Choix de la case à ouvrir :", 1, min = 1, max = 225),
       
-      actionButton("clic", label="Clic"),
+      actionButton("clic","Réveler"),
+      
+      numericInput('drapeau_id', "Choix de la case où poser le drapeau :", 1, min = 1, max = 225),
+      
+      actionButton("drap", "Poser"),
+      
+      numericInput('drap_id', "Choix de la case où enlever le drapeau :", 1, min = 1, max = 225),
+      
+      actionButton("drapenl", "Enlever")
+      
     ),
     
-    #mainPanel
     mainPanel(
+      useShinyjs(),
       
-      tableOutput("grille_debut"),
-      #tableOutput("grille_jeu")
+      textOutput("global_counter", inline = TRUE),
+
+      tableOutput("grille_1"),
+      tableOutput("grille_2"),
     )
-    
   )
-  
 )
 
-source("grille_crea.R")
-source("case_revelation.R")
-source("jeu_tout_seul.R")
 
 server <- function(input, output, session) {
   
-  nb_bomb <- reactive({input$bomb})  # choix du niveau de difficulté donc du nb de bombes
+  # Timer 
+  global_timer <- reactiveTimer(1000)
+  global_counter_i <- 0L
+  global_counter <- reactive({
+    global_timer()
+    on.exit(global_counter_i <<- global_counter_i + 1L)
+    
+    global_counter_i
+  })
   
-  # Initialisation du jeu dès que l'on clique sur "New Game"
-  grille_vide <- eventReactive(input$jeu_encore, {crea_vide(nb_bomb())})
-  grille_remplie <- eventReactive(input$jeu_encore, {creation_grille(nb_bomb())})
+  output$global_counter <- renderText(global_counter())
   
-  # pour afficher la première grille 
-  output$grille_debut <- renderTable({grille_vide()}, colnames = FALSE)
+  
+  # Initialisation des paramètres 
+  nbbomb <- reactive({input$nb_bomb})  # reactive du nombre de bombes choisie 
+  
+  Taille <- reactive({input$taille})   # reactive de la taille de la grille 
+  
+  values <- reactiveValues(nb_part=0, c = c())  # stockage des valeurs reactives relatives a l'ouverture d'une case
+  
+  values2 <- reactiveValues(nb_drap=0, c2 = c()) # stockage des valeurs reactives relatives a la pose d'un drapeau
+  
+  #Initialisation des grilles de jeu
+  grille_debut <- eventReactive(input$go, {crea_vide(nbbomb(), Taille())})  # grille vide 
+  
+  grille_jeu <- eventReactive(input$go, {creation_grille(nbbomb(),Taille())})  # grille contenant les valeurs du démineur
+  
+  
+  # Output 1
+  # On affiche la grille vide
+  output$grille_1 <- renderTable({grille_debut()}, colnames = FALSE)
+  
+  
+  # observeEvent 1 
+  observeEvent(input$clic, {
+    values$c[values$nb_part] <- {input$case_id}
+    values$nb_part <- values$nb_part + 1
+    hide("grille_1")
+    show("grille_2")
+  })
+  
+  # observeEvent
+  observeEvent(input$drap, {
+    values2$c2[values2$nb_drap] <- {input$drapeau_id}
+    values2$nb_drap <- values2$nb_drap + 1
+  })
 
+  
+  # Output 2 
+  # le jeu commence
+  output$grille_2 <- renderTable({
+    G <- grille_debut()
+    
+    for (i in values$c) {
+      G <- case_revel(i, G, grille_jeu()) 
+    }
+    return(G)
+    
+    for (j in values$c1){
+      G <- place_drap(j, G)
+    }
+    return(G)
+  },colnames = FALSE)
+  
+  # observeEvent 
+  observeEvent(input$go, {
+    hide("grille_2")
+    show("grille_1")
+    values$nb_part <- 0
+    values$c <- c()
+    values2$nb_drap <- 0
+    values$c2 <- c()})
+  
 }
 
 shinyApp(ui, server)
