@@ -14,9 +14,9 @@ Les règles du jeu sont les suivantes :
 
 -   vous pouvez également placer un drapeau puis le retirer à tout moment.
 
-## Les fonctions
+## Les différents fichiers de jeu
 
--   le fichier R `jeu_tout_seul.R` contient une fonction `jeu_seul()` qui lance une partie de démineur où les cases à révéler sont choisies au hasard par l'ordinateur. Vous pouvez cependant choisir le niveau de difficulté, la taille de la grille et le nombre de cases que vous souhaitez faire ouvrir par l'ordinateur.
+-   le fichier R `jeu_tout_seul.R` contient une fonction `jeu_seul()` qui lance une partie de démineur où les cases à révéler sont choisies au hasard par l'ordinateur. Vous pouvez cependant choisir le nombre de bombes, la taille de la grille et le nombre de cases que vous souhaitez faire ouvrir par l'ordinateur.
 
 -   le fichier R `case_revelation.R` contient une fonction `case_revel()` qui permet de révéler une case choisie par l'opérateur dans la grille de démineur.
 
@@ -24,7 +24,9 @@ Les règles du jeu sont les suivantes :
 
 -   le fichier R `app.R` contient les deux fonctions `server()` et `ui()` pour lancer l'application shiny.
 
--   le fichier R `drapeau_pose.R` contient les fonctions pour poser un drapeau (`place_drap()`) et enlever un drapeau posé (`deplace_drap()`).
+-   le fichier R `drapeau_pose.R` contient une fonction `place_drap()` qui permet de poser ou déposer un drapeau.
+
+-   le fichier R `autre.R` contient des petites fonctions utiles sans grande importance.
 
 ## Exemples
 
