@@ -54,6 +54,7 @@ ui <- fluidPage(
       useShinyjs(),
       
       textOutput("global_counter", inline = TRUE),
+      textOutput("NBomB"), 
 
       tableOutput("grille_1"),
       tableOutput("grille_2"),
@@ -91,6 +92,10 @@ server <- function(input, output, session) {
   
   grille_jeu <- eventReactive(input$go, {creation_grille(nbbomb(),Taille())})  # grille contenant les valeurs du démineur
   
+  
+  # Bombes
+  NB <- eventReactive(input$go, {compte_bombe(grille_jeu())})
+  output$NBomB <- renderText({paste("Il y a", NB(), "bombes dans la grille")})
   
   # Output 1
   # On affiche la grille vide
