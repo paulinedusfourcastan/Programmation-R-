@@ -50,7 +50,7 @@ Si vous ouvrez une case contenant une bombe, le jeu s'arrête et la grille de je
 
 <p align="center">
 
-<img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img4.png" title="dem" width="600"/>
+<img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img7.png" title="dem" width="600"/>
 
 </p>
 
