@@ -34,15 +34,15 @@ Voilà comment se présente de base l'interface de jeu après que vous ayez choi
 
 <p align="center">
 
-<img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img2.png" title="dem" width="600"/>
+<img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img5.png" title="dem" width="600"/>
 
 </p>
 
-Lorsque vous ouvrez des cases, voilà ce que vous obtenez :
+Lorsque vous ouvrez des cases ou posez des drapeaux, voilà ce que vous obtenez :
 
 <p align="center">
 
-<img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img3.png" title="dem" width="600"/>
+<img src="https://github.com/paulinedusfourcastan/Programmation-R-/blob/main/img6.png" title="dem" width="600"/>
 
 </p>
 
