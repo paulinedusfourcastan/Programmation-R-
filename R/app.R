@@ -126,14 +126,14 @@ server <- function(input, output, session) {
     return(G)
     
     
-  },colnames = FALSE)
+  },colnames = FALSE, bordered = TRUE)
   
   # observeEvent 
   observeEvent(input$go, {
     values$nb_part <- 0
     values$c <- c()
     values2$nb_drap <- 0
-    values$c2 <- c()})
+    values2$c2 <- c()})
   
 }
 
