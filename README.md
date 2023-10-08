@@ -58,4 +58,4 @@ Si vous ouvrez une case contenant une bombe, le jeu s'arrête et la grille de je
 
 Pauline Dusfour-Castan : [pauline.dusfourcastan\@gmail.com](mailto:pauline.dusfourcastan@gmail.com){.email}
 
-Sofiane Aoues : [aoues.sofiane\@outlook.com](mailto:aoues.sofiane@outlook.com){.email}
+
